@@ -3,15 +3,15 @@ MAINTAINER Rob Isenberg, robisenberg@me.com
 
 RUN apt-get update -qq && apt-get install -y \
     build-essential \
-    nodejs \
-    npm \
-    nodejs-legacy \
+    # nodejs \
+    # npm \
+    # nodejs-legacy \
     mysql-client \
-    libxml2-dev \       # for Nokogiri
-    libxslt1-dev \      # ""
+    # libxml2-dev \       # for Nokogiri
+    # libxslt1-dev \      # ""
     vim
 
-RUN npm install -g phantomjs # for JS tests
+# RUN npm install -g phantomjs # for JS tests
 
 RUN mkdir /myapp
 
@@ -29,4 +29,5 @@ ADD . /myapp
 # switch to the app folder inside container
 WORKDIR /myapp
 
-CMD bundle exec rackup
+EXPOSE 9292
+CMD ["bundle", "exec", "rackup", "-o", "0.0.0.0"]

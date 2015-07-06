@@ -1,0 +1,8 @@
+web:
+  build: .
+  volumes:
+    - .:/myapp
+  ports:
+    - "3000:9292"
+  env_file:
+    - '.env.web'
