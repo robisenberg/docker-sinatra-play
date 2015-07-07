@@ -1,11 +1,14 @@
 require 'sinatra/base'
+require 'redis'
 
 module NewRecruit
 
   class App < Sinatra::Base
 
     get '/' do
-      'Hello world - changed dude'
+      redis = Redis.new(host: 'redis')
+      redis.incr('hits')
+      "Hello world - you've viewed this #{redis.get('hits')} times"
     end
   end
 

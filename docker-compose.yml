@@ -6,3 +6,7 @@ web:
     - "3000:9292"
   env_file:
     - '.env.web'
+  links:
+    - redis
+redis:
+  image: redis
